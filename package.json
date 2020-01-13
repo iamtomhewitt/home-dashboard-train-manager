@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-list-endpoints": "^4.0.1",
     "mocha": "^7.0.0",
+    "request": "^2.88.0",
     "supertest": "^4.0.2"
   },
   "engines": {
