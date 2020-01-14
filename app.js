@@ -2,14 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const listEndpoints = require('express-list-endpoints');
 const request = require('request');
+const { version } = require('./package.json');
 
 const app = express();
 
-const { version } = require('./package.json');
-
 const successCode = 200;
 const errorCode = 502;
-const notFoundCode = 404;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
