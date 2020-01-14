@@ -114,10 +114,10 @@ Returns all the departures for a given station. You can find the station codes [
 }
 ```
 
-* `502 error`
+* `400 error`
 ```json
 {
-    "status": 502,
+    "status": 400,
     "message": "<error message>"
 }
 ```
@@ -186,10 +186,10 @@ Returns all the arrivals for a given station. You can find the station codes [he
 }
 ```
 
-* `502 error`
+* `400 error`
 ```json
 {
-    "status": 502,
+    "status": 400,
     "message": "<error message>"
 }
 ```
