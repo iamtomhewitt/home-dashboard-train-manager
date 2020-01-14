@@ -3,6 +3,7 @@ const assert = require('assert');
 
 describe('/ tests', () => {
     let server;
+    const apiKey = '';
 
     before(() => {
         server = require('../app').listen(3002);
@@ -37,7 +38,7 @@ describe('/ tests', () => {
                 {
                     stationCode: 'HRS',
                     numberOfResults: 10,
-                    apiKey: 'todo',
+                    apiKey,
                 },
             )
             .expect(200)
@@ -61,17 +62,17 @@ describe('/ tests', () => {
             .expect(502, done);
     });
 
-    it('/departures gives 404 when using an incorrect station', (done) => {
+    it('/departures gives 502 when using an incorrect station', (done) => {
         request(server)
             .get('/departures')
             .send(
                 {
                     stationCode: 'XYZ',
                     numberOfResults: 10,
-                    apiKey: 'todo',
+                    apiKey,
                 },
             )
-            .expect(404, done);
+            .expect(502, done);
     });
 
     it('/arrivals gives 200', (done) => {

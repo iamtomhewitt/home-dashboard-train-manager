@@ -46,6 +46,15 @@ app.get('/departures', (req, res) => {
             return;
         }
 
+        if (resp.statusCode === 500) {
+            response = {
+                status: errorCode,
+                message: `There was an error from Huxley, perhaps the station code is incorrect (you sent '${stationCode}')`,
+            };
+            res.status(errorCode).send(response);
+            return;
+        }
+
         const today = new Date(Date.now()).toLocaleString().slice(0, 10);
         const huxleyResponse = JSON.parse(resp.body);
         const stationName = huxleyResponse.locationName;
