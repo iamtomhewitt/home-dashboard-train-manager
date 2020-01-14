@@ -82,7 +82,7 @@ describe('/ tests', () => {
                 {
                     stationCode: 'HRS',
                     numberOfResults: 10,
-                    apiKey: 'todo',
+                    apiKey,
                 },
             )
             .expect(200)
@@ -105,16 +105,16 @@ describe('/ tests', () => {
             .expect(502, done);
     });
 
-    it('/arrivals gives 404 when using an incorrect station', (done) => {
+    it('/arrivals gives 502 when using an incorrect station', (done) => {
         request(server)
             .get('/arrivals')
             .send(
                 {
                     stationCode: 'XYZ',
                     numberOfResults: 10,
-                    apiKey: 'todo',
+                    apiKey,
                 },
             )
-            .expect(404, done);
+            .expect(502, done);
     });
 });
