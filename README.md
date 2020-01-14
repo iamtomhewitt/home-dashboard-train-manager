@@ -50,17 +50,9 @@ The root endpoint, returning information about the app.
 }
 ```
 
-### `/departures (GET)`
+### `/departures?stationCode=<code>&numberOfResults=10&apiKey=<your api key> (GET)`
 Returns all the departures for a given station. You can find the station codes [here](https://www.nationalrail.co.uk/stations_destinations/48541.aspx).
 
-#### Request
-```json
-{
-    "stationCode": "<station code>",
-    "numberOfResults": 10,
-    "apiKey": "<api key>"
-}
-```
 
 #### Responses
 * `200 success`
@@ -130,17 +122,8 @@ Returns all the departures for a given station. You can find the station codes [
 }
 ```
 
-### `/arrivals (GET)`
+### `/arrivals?stationCode=<code>&numberOfResults=10&apiKey=<your api key>  (GET)`
 Returns all the arrivals for a given station. You can find the station codes [here](https://www.nationalrail.co.uk/stations_destinations/48541.aspx).
-
-#### Request
-```json
-{
-    "stationCode": "<station code>",
-    "numberOfResults": 10,
-    "apiKey": "<api key>"
-}
-```
 
 #### Responses
 * `200 success`

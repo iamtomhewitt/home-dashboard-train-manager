@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/departures', (req, res) => {
-    const { stationCode } = req.body;
-    const { apiKey } = req.body;
-    const { numberOfResults } = req.body;
+    const { stationCode } = req.query;
+    const { apiKey } = req.query;
+    const { numberOfResults } = req.query;
 
     let response;
 
@@ -106,9 +106,9 @@ app.get('/departures', (req, res) => {
 });
 
 app.get('/arrivals', (req, res) => {
-    const { stationCode } = req.body;
-    const { apiKey } = req.body;
-    const { numberOfResults } = req.body;
+    const { stationCode } = req.query;
+    const { apiKey } = req.query;
+    const { numberOfResults } = req.query;
 
     let response;
 

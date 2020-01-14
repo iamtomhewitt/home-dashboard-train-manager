@@ -39,12 +39,7 @@ describe('/ tests', () => {
 
     it('/departures gives 200', (done) => {
         request(server)
-            .get('/departures')
-            .send({
-                stationCode: 'LDS',
-                numberOfResults: 10,
-                apiKey,
-            })
+            .get(`/departures?stationCode=LDS&numberOfResults=10&apiKey=${apiKey}`)
             .expect(200)
             .end((err, response) => {
                 if (err) {
@@ -68,27 +63,13 @@ describe('/ tests', () => {
 
     it('/departures gives 502 when using an incorrect station', (done) => {
         request(server)
-            .get('/departures')
-            .send(
-                {
-                    stationCode: 'XYZ',
-                    numberOfResults: 10,
-                    apiKey,
-                },
-            )
+            .get(`/departures?stationCode=XYZ&numberOfResults=10&apiKey=${apiKey}`)
             .expect(502, done);
     });
 
     it('/arrivals gives 200', (done) => {
         request(server)
-            .get('/arrivals')
-            .send(
-                {
-                    stationCode: 'LDS',
-                    numberOfResults: 10,
-                    apiKey,
-                },
-            )
+            .get(`/arrivals?stationCode=LDS&numberOfResults=10&apiKey=${apiKey}`)
             .expect(200)
             .end((err, response) => {
                 if (err) {
@@ -111,14 +92,7 @@ describe('/ tests', () => {
 
     it('/arrivals gives 502 when using an incorrect station', (done) => {
         request(server)
-            .get('/arrivals')
-            .send(
-                {
-                    stationCode: 'XYZ',
-                    numberOfResults: 10,
-                    apiKey,
-                },
-            )
+            .get(`/arrivals?stationCode=XYZ&numberOfResults=10&apiKey=${apiKey}`)
             .expect(502, done);
     });
 });
