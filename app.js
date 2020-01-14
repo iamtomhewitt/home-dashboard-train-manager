@@ -23,11 +23,26 @@ app.get('/departures', (req, res) => {
     const { apiKey } = req.body;
     const { numberOfResults } = req.body;
 
+    let response;
+
+    if (!stationCode || !apiKey || !numberOfResults) {
+        response = {
+            status: errorCode,
+            message: 'There are missing parameters in the JSON payload',
+        };
+        res.status(errorCode).send(response);
+        return;
+    }
+
     const url = `https://huxley.apphb.com/departures/${stationCode}/${numberOfResults}?accessToken=${apiKey}`;
 
     request(url, (err, resp) => {
         if (err) {
-            res.status(errorCode).send('departures');
+            response = {
+                status: errorCode,
+                message: err.message,
+            };
+            res.status(errorCode).send(response);
             return;
         }
 
@@ -68,7 +83,7 @@ app.get('/departures', (req, res) => {
             });
         }
 
-        const response = {
+        response = {
             status: successCode,
             station: stationName,
             stationCode,
