@@ -1,0 +1,5 @@
+---
+install: "npm install"
+language: node_js
+node_js: "8.16.2"
+script: "npm test"
