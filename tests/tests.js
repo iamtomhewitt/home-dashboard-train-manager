@@ -15,12 +15,12 @@ describe('/ tests', () => {
 
     it('/ gives 200', (done) => {
         request(server)
-			.get('/')
-			.send({
-				"stationCode": "HRS",
-				"numberOfResults": 10,
-				apiKey
-			})
+            .get('/')
+            .send({
+                stationCode: 'HRS',
+                numberOfResults: 10,
+                apiKey,
+            })
             .expect(200)
             .end((err, response) => {
                 if (err) {
@@ -40,10 +40,10 @@ describe('/ tests', () => {
         request(server)
             .get('/departures')
             .send({
-				"stationCode": "HRS",
-				"numberOfResults": 10,
-				apiKey
-			})
+                stationCode: 'HRS',
+                numberOfResults: 10,
+                apiKey,
+            })
             .expect(200)
             .end((err, response) => {
                 if (err) {
