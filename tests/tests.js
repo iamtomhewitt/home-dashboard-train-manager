@@ -3,7 +3,7 @@ const assert = require('assert');
 
 describe('/ tests', () => {
     let server;
-    const apiKey = '';
+    const apiKey = process.env.API_KEY;
 
     before(() => {
         server = require('../app').listen(3002);
@@ -15,7 +15,12 @@ describe('/ tests', () => {
 
     it('/ gives 200', (done) => {
         request(server)
-            .get('/')
+			.get('/')
+			.send({
+				"stationCode": "HRS",
+				"numberOfResults": 10,
+				apiKey
+			})
             .expect(200)
             .end((err, response) => {
                 if (err) {
@@ -34,13 +39,11 @@ describe('/ tests', () => {
     it('/departures gives 200', (done) => {
         request(server)
             .get('/departures')
-            .send(
-                {
-                    stationCode: 'HRS',
-                    numberOfResults: 10,
-                    apiKey,
-                },
-            )
+            .send({
+				"stationCode": "HRS",
+				"numberOfResults": 10,
+				apiKey
+			})
             .expect(200)
             .end((err, response) => {
                 if (err) {
