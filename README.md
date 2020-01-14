@@ -2,11 +2,11 @@
 
 <h1 align="center">Home Dashboard Train Manager </h1>
 <p align="center">
-	<img src="https://travis-ci.org/iamtomhewitt/home-dashboard-train-manager.svg"/>
-	<img src="https://heroku-badge.herokuapp.com/?app=home-dashboard-train-manager&style=round&svg=1"/>
+    <img src="https://travis-ci.org/iamtomhewitt/home-dashboard-train-manager.svg"/>
+    <img src="https://heroku-badge.herokuapp.com/?app=home-dashboard-train-manager&style=round&svg=1"/>
 </p>
 <p align="center">
-	A Node Express app for piggy backing the api of <a href="https://github.com/jpsingleton/Huxley">Huxley</a> to get train timetables for my <a href="https://github.com/iamtomhewitt/home-dashboard">home dashboard</a>. This project basically just repurposes the JSON response from Huxley into a more basic format for my needs.
+    A Node Express app for piggy backing the api of <a href="https://github.com/jpsingleton/Huxley">Huxley</a> to get train timetables for my <a href="https://github.com/iamtomhewitt/home-dashboard">home dashboard</a>. This project basically just repurposes the JSON response from Huxley into a more basic format for my needs.
 </p>
 <p align="center">🙌 Big thanks to <a href="https://github.com/jpsingleton">James Singleton</a> for making Huxley!</p>
 
@@ -56,9 +56,9 @@ Returns all the departures for a given station. You can find the station codes [
 #### Request
 ```json
 {
-	"stationCode": "<station code>",
-	"numberOfResults": 10,
-	"apiKey": "<api key>"
+    "stationCode": "<station code>",
+    "numberOfResults": 10,
+    "apiKey": "<api key>"
 }
 ```
 
@@ -101,8 +101,8 @@ Returns all the departures for a given station. You can find the station codes [
             "platform": "16A",
             "cancelled": false,
             "busReplacement": false
-		},
-		{
+        },
+        {
             "destination": "Leeds Bradford Airport (Bus)",
             "scheduledDepartTime": "2020-01-14T13:09:00.000Z",
             "actualDepartTime": "2020-01-14T13:09:00.000Z",
@@ -128,9 +128,9 @@ Returns all the arrivals for a given station. You can find the station codes [he
 #### Request
 ```json
 {
-	"stationCode": "<station code>",
-	"numberOfResults": 10,
-	"apiKey": "<api key>"
+    "stationCode": "<station code>",
+    "numberOfResults": 10,
+    "apiKey": "<api key>"
 }
 ```
 
