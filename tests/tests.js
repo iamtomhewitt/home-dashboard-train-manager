@@ -18,7 +18,7 @@ describe('/ tests', () => {
         request(server)
             .get('/')
             .send({
-                stationCode: 'HRS',
+                stationCode: 'LDS',
                 numberOfResults: 10,
                 apiKey,
             })
@@ -41,7 +41,7 @@ describe('/ tests', () => {
         request(server)
             .get('/departures')
             .send({
-                stationCode: 'HRS',
+                stationCode: 'LDS',
                 numberOfResults: 10,
                 apiKey,
             })
@@ -54,7 +54,7 @@ describe('/ tests', () => {
 
                 assert.notEqual(response.body.timetable, null);
                 assert.equal(response.body.timetable.length, 10);
-                assert.equal(response.body.stationCode, 'HRS');
+                assert.equal(response.body.stationCode, 'LDS');
 
                 return done();
             });
@@ -66,7 +66,7 @@ describe('/ tests', () => {
             .expect(400, done);
     });
 
-    it('/departures gives 400 when using an incorrect station', (done) => {
+    it('/departures gives 502 when using an incorrect station', (done) => {
         request(server)
             .get('/departures')
             .send(
@@ -76,7 +76,7 @@ describe('/ tests', () => {
                     apiKey,
                 },
             )
-            .expect(400, done);
+            .expect(502, done);
     });
 
     it('/arrivals gives 200', (done) => {
@@ -84,7 +84,7 @@ describe('/ tests', () => {
             .get('/arrivals')
             .send(
                 {
-                    stationCode: 'HRS',
+                    stationCode: 'LDS',
                     numberOfResults: 10,
                     apiKey,
                 },
@@ -97,7 +97,7 @@ describe('/ tests', () => {
 
                 assert.notEqual(response.body.timetable, null);
                 assert.equal(response.body.timetable.length, 10);
-                assert.equal(response.body.stationCode, 'HRS');
+                assert.equal(response.body.stationCode, 'LDS');
 
                 return done();
             });
@@ -109,7 +109,7 @@ describe('/ tests', () => {
             .expect(400, done);
     });
 
-    it('/arrivals gives 400 when using an incorrect station', (done) => {
+    it('/arrivals gives 502 when using an incorrect station', (done) => {
         request(server)
             .get('/arrivals')
             .send(
@@ -119,6 +119,6 @@ describe('/ tests', () => {
                     apiKey,
                 },
             )
-            .expect(400, done);
+            .expect(502, done);
     });
 });

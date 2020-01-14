@@ -7,13 +7,14 @@ const { version } = require('./package.json');
 const app = express();
 
 const successCode = 200;
-const errorCode = 400;
+const clientErrorCode = 400;
+const errorCode = 502;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.status(200).send({ status: '🚂 SERVER OK', version, endpoints: listEndpoints(app) });
+    res.status(successCode).send({ status: '🚂 SERVER OK', version, endpoints: listEndpoints(app) });
 });
 
 app.get('/departures', (req, res) => {
@@ -28,7 +29,7 @@ app.get('/departures', (req, res) => {
             status: errorCode,
             message: 'There are missing parameters in the JSON payload',
         };
-        res.status(errorCode).send(response);
+        res.status(clientErrorCode).send(response);
         return;
     }
 
@@ -116,7 +117,7 @@ app.get('/arrivals', (req, res) => {
             status: errorCode,
             message: 'There are missing parameters in the JSON payload',
         };
-        res.status(errorCode).send(response);
+        res.status(clientErrorCode).send(response);
         return;
     }
 
