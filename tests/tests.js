@@ -43,14 +43,35 @@ describe('/ tests', () => {
             .expect(200)
             .end((err, response) => {
                 if (err) {
+                    assert.fail(err.message);
                     return done(err);
                 }
 
-                assert.fail('not implemented');
-
+                assert.notEqual(response.body.timetable, null);
+                assert.equal(response.body.timetable.length, 10);
+                assert.equal(response.body.stationCode, 'HRS');
 
                 return done();
             });
+    });
+
+    it('/departures gives 502 when parameters are missing', (done) => {
+        request(server)
+            .get('/departures')
+            .expect(502, done);
+    });
+
+    it('/departures gives 404 when using an incorrect station', (done) => {
+        request(server)
+            .get('/departures')
+            .send(
+                {
+                    stationCode: 'XYZ',
+                    numberOfResults: 10,
+                    apiKey: 'todo',
+                },
+            )
+            .expect(404, done);
     });
 
     it('/arrivals gives 200', (done) => {
@@ -69,9 +90,30 @@ describe('/ tests', () => {
                     return done(err);
                 }
 
-                assert.fail('not implemented');
+                assert.notEqual(response.body.timetable, null);
+                assert.equal(response.body.timetable.length, 10);
+                assert.equal(response.body.stationCode, 'HRS');
 
                 return done();
             });
+    });
+
+    it('/arrivals gives 502 when parameters are missing', (done) => {
+        request(server)
+            .get('/arrivals')
+            .expect(502, done);
+    });
+
+    it('/arrivals gives 404 when using an incorrect station', (done) => {
+        request(server)
+            .get('/arrivals')
+            .send(
+                {
+                    stationCode: 'XYZ',
+                    numberOfResults: 10,
+                    apiKey: 'todo',
+                },
+            )
+            .expect(404, done);
     });
 });
