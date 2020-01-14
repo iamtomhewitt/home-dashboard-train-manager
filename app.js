@@ -90,7 +90,12 @@ app.get('/departures', (req, res) => {
                     busReplacement: true,
                 });
             });
-        }
+		}
+		
+		// Sort the timetable based on departure time so buses are not lumped at the end
+		timetable.sort((a,b) => {
+			return a.scheduledDepartTime.toString().localeCompare(b.scheduledDepartTime.toString());
+		})
 
         response = {
             status: successCode,
