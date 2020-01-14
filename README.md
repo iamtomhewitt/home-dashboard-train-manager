@@ -118,6 +118,14 @@ Returns all the departures for a given station. You can find the station codes [
 ```json
 {
     "status": 400,
+    "message": "There are missing parameters in the JSON payload"
+}
+```
+
+* `502 error`
+```json
+{
+    "status": 502,
     "message": "<error message>"
 }
 ```
@@ -190,6 +198,14 @@ Returns all the arrivals for a given station. You can find the station codes [he
 ```json
 {
     "status": 400,
+    "message": "There are missing parameters in the JSON payload"
+}
+```
+
+* `502 error`
+```json
+{
+    "status": 502,
     "message": "<error message>"
 }
 ```
