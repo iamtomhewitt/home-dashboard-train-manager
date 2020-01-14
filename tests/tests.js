@@ -60,13 +60,13 @@ describe('/ tests', () => {
             });
     });
 
-    it('/departures gives 502 when parameters are missing', (done) => {
+    it('/departures gives 400 when parameters are missing', (done) => {
         request(server)
             .get('/departures')
-            .expect(502, done);
+            .expect(400, done);
     });
 
-    it('/departures gives 502 when using an incorrect station', (done) => {
+    it('/departures gives 400 when using an incorrect station', (done) => {
         request(server)
             .get('/departures')
             .send(
@@ -76,7 +76,7 @@ describe('/ tests', () => {
                     apiKey,
                 },
             )
-            .expect(502, done);
+            .expect(400, done);
     });
 
     it('/arrivals gives 200', (done) => {
@@ -103,13 +103,13 @@ describe('/ tests', () => {
             });
     });
 
-    it('/arrivals gives 502 when parameters are missing', (done) => {
+    it('/arrivals gives 400 when parameters are missing', (done) => {
         request(server)
             .get('/arrivals')
-            .expect(502, done);
+            .expect(400, done);
     });
 
-    it('/arrivals gives 502 when using an incorrect station', (done) => {
+    it('/arrivals gives 400 when using an incorrect station', (done) => {
         request(server)
             .get('/arrivals')
             .send(
@@ -119,6 +119,6 @@ describe('/ tests', () => {
                     apiKey,
                 },
             )
-            .expect(502, done);
+            .expect(400, done);
     });
 });

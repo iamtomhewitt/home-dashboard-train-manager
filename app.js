@@ -7,7 +7,7 @@ const { version } = require('./package.json');
 const app = express();
 
 const successCode = 200;
-const errorCode = 502;
+const errorCode = 400;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
