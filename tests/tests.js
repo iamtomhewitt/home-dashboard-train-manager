@@ -1,5 +1,6 @@
 const request = require('supertest');
 const assert = require('assert');
+require('dotenv').config();
 
 describe('/ tests', () => {
     let server;
