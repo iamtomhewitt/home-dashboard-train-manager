@@ -90,12 +90,10 @@ app.get('/departures', (req, res) => {
                     busReplacement: true,
                 });
             });
-		}
-		
-		// Sort the timetable based on departure time so buses are not lumped at the end
-		timetable.sort((a,b) => {
-			return a.scheduledDepartTime.toString().localeCompare(b.scheduledDepartTime.toString());
-		})
+        }
+
+        // Sort the timetable based on departure time so buses are not lumped at the end
+        timetable.sort((a, b) => a.scheduledDepartTime.toString().localeCompare(b.scheduledDepartTime.toString()));
 
         response = {
             status: successCode,
@@ -109,7 +107,91 @@ app.get('/departures', (req, res) => {
 });
 
 app.get('/arrivals', (req, res) => {
-    res.status(200).send('arrivals');
+    const { stationCode } = req.body;
+    const { apiKey } = req.body;
+    const { numberOfResults } = req.body;
+
+    let response;
+
+    if (!stationCode || !apiKey || !numberOfResults) {
+        response = {
+            status: errorCode,
+            message: 'There are missing parameters in the JSON payload',
+        };
+        res.status(errorCode).send(response);
+        return;
+    }
+
+    const url = `https://huxley.apphb.com/arrivals/${stationCode}/${numberOfResults}?accessToken=${apiKey}`;
+
+    request(url, (err, resp) => {
+        if (err) {
+            response = {
+                status: errorCode,
+                message: err.message,
+            };
+            res.status(errorCode).send(response);
+            return;
+        }
+
+        if (resp.statusCode === 500) {
+            response = {
+                status: errorCode,
+                message: `There was an error from Huxley, perhaps the station code is incorrect (you sent '${stationCode}')`,
+            };
+            res.status(errorCode).send(response);
+            return;
+        }
+
+        const today = new Date(Date.now()).toLocaleString().slice(0, 10);
+        const huxleyResponse = JSON.parse(resp.body);
+        const stationName = huxleyResponse.locationName;
+        const timetable = [];
+
+        if (huxleyResponse.trainServices !== null) {
+            huxleyResponse.trainServices.forEach((train) => {
+                const scheduledArrivalTime = new Date(`${today} ${train.sta}`);
+                const actualArrivalTime = train.eta === 'On time' ? new Date(`${today} ${train.sta}`) : new Date(`${today} ${train.eta}`);
+
+                timetable.push({
+                    origin: train.origin[0].locationName,
+                    scheduledArrivalTime,
+                    actualArrivalTime,
+                    platform: train.platform,
+                    cancelled: train.isCancelled,
+                    busReplacement: false,
+                });
+            });
+        }
+
+        if (huxleyResponse.busServices !== null) {
+            huxleyResponse.busServices.forEach((bus) => {
+                const scheduledArrivalTime = new Date(`${today} ${bus.sta}`);
+                const actualArrivalTime = scheduledArrivalTime;
+
+                timetable.push({
+                    destination: bus.destination[0].locationName,
+                    scheduledArrivalTime,
+                    actualArrivalTime,
+                    platform: bus.platform,
+                    cancelled: false,
+                    busReplacement: true,
+                });
+            });
+        }
+
+        // Sort the timetable based on arrival time so buses are not lumped at the end
+        timetable.sort((a, b) => a.scheduledArrivalTime.toString().localeCompare(b.scheduledArrivalTime.toString()));
+
+        response = {
+            status: successCode,
+            station: stationName,
+            stationCode,
+            timetable,
+        };
+
+        res.status(successCode).send(response);
+    });
 });
 
 const port = 3001;
