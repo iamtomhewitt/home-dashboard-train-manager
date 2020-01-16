@@ -27,7 +27,7 @@ app.get('/departures', (req, res) => {
     if (!stationCode || !apiKey || !numberOfResults) {
         response = {
             status: errorCode,
-            message: 'There are missing parameters in the JSON payload',
+            message: 'There are missing query parameters',
         };
         res.status(clientErrorCode).send(response);
         return;
@@ -115,7 +115,7 @@ app.get('/arrivals', (req, res) => {
     if (!stationCode || !apiKey || !numberOfResults) {
         response = {
             status: errorCode,
-            message: 'There are missing parameters in the JSON payload',
+            message: 'There are missing query parameters',
         };
         res.status(clientErrorCode).send(response);
         return;

@@ -1,5 +1,3 @@
-
-
 <h1 align="center">Home Dashboard Train Manager </h1>
 <p align="center">
     <img src="https://travis-ci.org/iamtomhewitt/home-dashboard-train-manager.svg"/>
@@ -22,7 +20,7 @@
 The root endpoint, returning information about the app.
 
 #### Responses
-* `200 success`
+* `200` success
 ```json
 {
     "status": "🚂 SERVER OK",
@@ -50,12 +48,15 @@ The root endpoint, returning information about the app.
 }
 ```
 
-### `/departures?stationCode=<code>&numberOfResults=10&apiKey=<your api key> (GET)`
-Returns all the departures for a given station. You can find the station codes [here](https://www.nationalrail.co.uk/stations_destinations/48541.aspx).
-
+### `/departures (GET)`
+* Returns all the departures for a given station. You can find the station codes [here](https://www.nationalrail.co.uk/stations_destinations/48541.aspx).
+* Query parameters:
+	* `stationCode=<code>`
+	* `numberOfResults=<number>`
+	* `apiKey=<your api key>`
 
 #### Responses
-* `200 success`
+* `200` success
 ```json
 {
     "status": 200,
@@ -106,11 +107,11 @@ Returns all the departures for a given station. You can find the station codes [
 }
 ```
 
-* `400 error`
+* `400` if there was a problem with query parameters 
 ```json
 {
     "status": 400,
-    "message": "There are missing parameters in the JSON payload"
+    "message": "There are missing query parameters"
 }
 ```
 
@@ -122,11 +123,15 @@ Returns all the departures for a given station. You can find the station codes [
 }
 ```
 
-### `/arrivals?stationCode=<code>&numberOfResults=10&apiKey=<your api key>  (GET)`
-Returns all the arrivals for a given station. You can find the station codes [here](https://www.nationalrail.co.uk/stations_destinations/48541.aspx).
+### `/arrivals (GET)`
+* Returns all the arrivals for a given station. You can find the station codes [here](https://www.nationalrail.co.uk/stations_destinations/48541.aspx).
+* Query parameters:
+	* `stationCode=<code>`
+	* `numberOfResults=<number>`
+	* `apiKey=<your api key>`
 
 #### Responses
-* `200 success`
+* `200` success
 ```json
 {
     "status": 200,
@@ -177,11 +182,11 @@ Returns all the arrivals for a given station. You can find the station codes [he
 }
 ```
 
-* `400 error`
+* `400` if there was a problem with query parameters 
 ```json
 {
     "status": 400,
-    "message": "There are missing parameters in the JSON payload"
+    "message": "There are missing query parameters"
 }
 ```
 
