@@ -4,7 +4,7 @@
     <img src="https://heroku-badge.herokuapp.com/?app=home-dashboard-train-manager&style=round&svg=1"/>
 </p>
 <p align="center">
-    A Node Express app for piggy backing the api of <a href="https://github.com/jpsingleton/Huxley">Huxley</a> to get train timetables for my <a href="https://github.com/iamtomhewitt/home-dashboard">home dashboard</a>. This project basically just repurposes the JSON response from Huxley into a more basic format for my needs.
+    A Node Express app for piggy backing the api of <a href="https://github.com/jpsingleton/Huxley">Huxley</a> to get train timetables for my <a href="https://github.com/iamtomhewitt/home-dashboard">home dashboard</a>. This project basically just reformats the JSON response from Huxley into a more basic model for my dashboard.
 </p>
 <p align="center">🙌 Big thanks to <a href="https://github.com/jpsingleton">James Singleton</a> for making Huxley!</p>
 
@@ -115,10 +115,10 @@ The root endpoint, returning information about the app.
 }
 ```
 
-* `502 error`
+* `500` error
 ```json
 {
-    "status": 502,
+    "status": 500,
     "message": "<error message>"
 }
 ```
@@ -190,10 +190,10 @@ The root endpoint, returning information about the app.
 }
 ```
 
-* `502 error`
+* `500` error
 ```json
 {
-    "status": 502,
+    "status": 500,
     "message": "<error message>"
 }
 ```
