@@ -61,10 +61,10 @@ describe('/ tests', () => {
             .expect(400, done);
     });
 
-    it('/departures gives 502 when using an incorrect station', (done) => {
+    it('/departures gives 500 when using an incorrect station', (done) => {
         request(server)
             .get(`/departures?stationCode=XYZ&numberOfResults=10&apiKey=${apiKey}`)
-            .expect(502, done);
+            .expect(500, done);
     });
 
     it('/arrivals gives 200', (done) => {
@@ -90,9 +90,9 @@ describe('/ tests', () => {
             .expect(400, done);
     });
 
-    it('/arrivals gives 502 when using an incorrect station', (done) => {
+    it('/arrivals gives 500 when using an incorrect station', (done) => {
         request(server)
             .get(`/arrivals?stationCode=XYZ&numberOfResults=10&apiKey=${apiKey}`)
-            .expect(502, done);
+            .expect(500, done);
     });
 });

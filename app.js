@@ -6,15 +6,15 @@ const { version } = require('./package.json');
 
 const app = express();
 
-const successCode = 200;
-const clientErrorCode = 400;
-const errorCode = 502;
+const success = 200;
+const badRequest = 400;
+const serverError = 500;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.status(successCode).send({ status: '🚂 SERVER OK', version, endpoints: listEndpoints(app) });
+    res.status(success).send({ status: '🚂 SERVER OK', version, endpoints: listEndpoints(app) });
 });
 
 app.get('/departures', (req, res) => {
@@ -26,10 +26,10 @@ app.get('/departures', (req, res) => {
 
     if (!stationCode || !apiKey || !numberOfResults) {
         response = {
-            status: errorCode,
+            status: badRequest,
             message: 'There are missing query parameters',
         };
-        res.status(clientErrorCode).send(response);
+        res.status(badRequest).send(response);
         return;
     }
 
@@ -38,19 +38,19 @@ app.get('/departures', (req, res) => {
     request(url, (err, resp) => {
         if (err) {
             response = {
-                status: errorCode,
+                status: serverError,
                 message: err.message,
             };
-            res.status(errorCode).send(response);
+            res.status(serverError).send(response);
             return;
         }
 
         if (resp.statusCode === 500) {
             response = {
-                status: errorCode,
+                status: serverError,
                 message: `There was an error from Huxley, perhaps the station code is incorrect (you sent '${stationCode}')`,
             };
-            res.status(errorCode).send(response);
+            res.status(serverError).send(response);
             return;
         }
 
@@ -95,13 +95,13 @@ app.get('/departures', (req, res) => {
         timetable.sort((a, b) => a.scheduledDepartTime.toString().localeCompare(b.scheduledDepartTime.toString()));
 
         response = {
-            status: successCode,
+            status: success,
             station: stationName,
             stationCode,
             timetable,
         };
 
-        res.status(successCode).send(response);
+        res.status(success).send(response);
     });
 });
 
@@ -114,10 +114,10 @@ app.get('/arrivals', (req, res) => {
 
     if (!stationCode || !apiKey || !numberOfResults) {
         response = {
-            status: errorCode,
+            status: badRequest,
             message: 'There are missing query parameters',
         };
-        res.status(clientErrorCode).send(response);
+        res.status(badRequest).send(response);
         return;
     }
 
@@ -126,19 +126,19 @@ app.get('/arrivals', (req, res) => {
     request(url, (err, resp) => {
         if (err) {
             response = {
-                status: errorCode,
+                status: serverError,
                 message: err.message,
             };
-            res.status(errorCode).send(response);
+            res.status(serverError).send(response);
             return;
         }
 
         if (resp.statusCode === 500) {
             response = {
-                status: errorCode,
+                status: serverError,
                 message: `There was an error from Huxley, perhaps the station code is incorrect (you sent '${stationCode}')`,
             };
-            res.status(errorCode).send(response);
+            res.status(serverError).send(response);
             return;
         }
 
@@ -183,13 +183,13 @@ app.get('/arrivals', (req, res) => {
         timetable.sort((a, b) => a.scheduledArrivalTime.toString().localeCompare(b.scheduledArrivalTime.toString()));
 
         response = {
-            status: successCode,
+            status: success,
             station: stationName,
             stationCode,
             timetable,
         };
 
-        res.status(successCode).send(response);
+        res.status(success).send(response);
     });
 });
 
