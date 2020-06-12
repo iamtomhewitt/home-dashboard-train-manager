@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "pretest": "eslint --ignore-path .gitignore .",
+    "release": "standard-version",
     "lint": "npm run pretest -- --fix",
     "test": "mocha 'tests/**/*.js' --exit"
   },
@@ -37,6 +38,7 @@
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-react-hooks": "^1.7.0"
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "standard-version": "^8.0.0"
   }
 }
