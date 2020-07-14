@@ -1,45 +1,45 @@
 {
-  "name": "home-dashboard-train-manager",
-  "version": "1.0.4",
-  "description": "A piggy back api of Huxley to get train timetables for my home dashboard.",
-  "main": "app.js",
-  "scripts": {
-    "pretest": "eslint --ignore-path .gitignore .",
-    "release": "github-releaser",
-    "lint": "npm run pretest -- --fix",
-    "test": "mocha 'tests/**/*.js' --exit"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iamtomhewitt/home-dashboard-train-manager.git",
-    "apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard-train-manager"
-  },
-  "author": "Tom Hewitt",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/iamtomhewitt/home-dashboard-train-manager/issues"
-  },
-  "homepage": "https://github.com/iamtomhewitt/home-dashboard-train-manager#readme",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-list-endpoints": "^4.0.1",
-    "github-releaser": "^1.1.2",
-    "minimist": ">=1.2.2",
-    "mocha": "^7.2.0",
-    "request": "^2.88.2",
-    "supertest": "^4.0.2"
-  },
-  "engines": {
-    "node": "12.14.1"
-  },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^1.7.0"
-  }
+    "name": "home-dashboard-train-manager",
+    "version": "1.0.5",
+    "description": "A piggy back api of Huxley to get train timetables for my home dashboard.",
+    "main": "app.js",
+    "scripts": {
+        "pretest": "eslint --ignore-path .gitignore .",
+        "release": "github-releaser",
+        "lint": "npm run pretest -- --fix",
+        "test": "mocha 'tests/**/*.js' --exit"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/iamtomhewitt/home-dashboard-train-manager.git",
+        "apiUrl": "https://api.github.com/repos/iamtomhewitt/home-dashboard-train-manager"
+    },
+    "author": "Tom Hewitt",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/iamtomhewitt/home-dashboard-train-manager/issues"
+    },
+    "homepage": "https://github.com/iamtomhewitt/home-dashboard-train-manager#readme",
+    "dependencies": {
+        "body-parser": "^1.19.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-list-endpoints": "^4.0.1",
+        "github-releaser": "^1.1.2",
+        "minimist": ">=1.2.2",
+        "mocha": "^7.2.0",
+        "request": "^2.88.2",
+        "supertest": "^4.0.2"
+    },
+    "engines": {
+        "node": "12.14.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-config-airbnb": "^18.2.0",
+        "eslint-plugin-import": "^2.22.0",
+        "eslint-plugin-jsx-a11y": "^6.3.1",
+        "eslint-plugin-react": "^7.20.3",
+        "eslint-plugin-react-hooks": "^1.7.0"
+    }
 }
