@@ -1,5 +1,0 @@
----
-install: "npm install"
-language: node_js
-node_js: "12.14.1"
-script: "npm test"
